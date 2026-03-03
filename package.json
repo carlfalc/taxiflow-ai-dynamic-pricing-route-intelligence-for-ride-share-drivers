@@ -1,0 +1,16 @@
+{
+  "name": "taxiflow-ai-dynamic-pricing-route-intelligence-for-ride-share-drivers",
+  "version": "0.1.0",
+  "description": "TaxiFlow AI is a mobile app that helps Uber/Lyft drivers maximize earnings through AI-powered surge prediction, optimal positioning recommendations, and multi-platform trip comparison. With gig econom",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "ai",
+    "saas",
+    "the-firm"
+  ],
+  "author": "The Firm — AI Venture Studio",
+  "license": "MIT"
+}
