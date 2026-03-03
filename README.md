@@ -1,0 +1,2 @@
+# taxiflow-ai-dynamic-pricing-route-intelligence-for-ride-share-drivers
+TaxiFlow AI is a mobile app that helps Uber/Lyft drivers maximize earnings through AI-powered surge prediction, optimal positioning recommendations, and multi-platform trip comparison. With gig economy workers struggling to earn consistent income and lacking data-driven insights, this tool could increase driver earnings by 15-25% while requiring on
