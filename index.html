@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaxiFlow AI - Maximize Your Ride-Share Earnings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 102, 255, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0066FF;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #0066FF;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0066FF, #0052CC);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00CC66;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #f8faff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066FF, #00CC66);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #0066FF;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .step p {
+            color: #666;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: #f8faff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 3px solid #0066FF;
+        }
+
+        .popular-badge {
+            background: #0066FF;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0066FF;
+            margin-bottom: 30px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: #0066FF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+            background: #f8faff;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 25px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .faq-answer {
+            padding: 25px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #0066FF;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.7;
+        }
+
+        .footer-section a:hover {
+            color: #0066FF;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Email Signup */
+        .email-signup {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #0066FF;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .email-signup {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">TaxiFlow AI</div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <a href="#signup" class="cta-button">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Stop Driving Blind.<br>Start Earning Smart.</h1>
+            <p class="subtitle">AI-powered surge prediction and route intelligence for Uber & Lyft drivers. Increase your earnings by up to 25% with data-driven decisions.</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">25%</span>
+                    <span class="stat-label">Average Earnings Increase</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">40%</span>
+                    <span class="stat-label">Less Empty Driving</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$400</span>
+                    <span class="stat-label">Weekly Savings Potential</span>
+                </div>
+            </div>
+            
+            <a href="#signup" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">Download Free App</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Your AI Co-Driver</h2>
+            <p class="section-subtitle">Three game-changing tools that give you the competitive edge other drivers don't have</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>AI Surge Prediction</h3>
+                    <p>Know exactly when and where surge pricing will hit before it happens. Our AI analyzes weather, events, traffic patterns, and historical data to predict surges up to 2 hours in advance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Multi-Platform Rate Comparison</h3>
+                    <p>See real-time rates across Uber, Lyft, and Ola instantly. Never accept a low-paying trip when a better option is available. Switch platforms strategically to maximize every hour.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Smart Positioning Recommendations</h3>
+                    <p>Get precise location recommendations that factor in traffic, fuel costs, and your current position. Stop wasting time and fuel driving to dead zones.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>ANZ-Optimized Intelligence</h3>
+                    <p>Built specifically for Auckland, Wellington, Sydney, Melbourne, and Brisbane. Understands local events, traffic patterns, and driver behaviors that generic US apps miss completely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How TaxiFlow AI Works</h2>
+            <p class="section-subtitle">Get up and running in minutes. Start earning more today.</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download & Connect</h3>
+                    <p>Install the app and securely connect your Uber and Lyft accounts. No personal data is stored - we only access publicly available trip information.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get AI Predictions</h3>
+                    <p>Receive real-time surge predictions, optimal positioning alerts, and multi-platform rate comparisons directly to your phone.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Drive Smarter</h3>
+                    <p>Follow the recommendations to position yourself in high-demand areas, accept the best-paying trips, and minimize empty driving time.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Track Your Gains</h3>
+                    <p>Watch your daily earnings increase with detailed analytics showing exactly how much extra you're making with TaxiFlow AI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your Plan</h2>
+            <p class="section-subtitle">Start free, upgrade when you see the results</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">Free</div>
+                    <ul class="plan-features">
+                        <li>Real-time surge alerts</li>
+                        <li>Basic heat maps</li>
+                        <li>5 predictions per day</li>
+                        <li>Auckland & Wellington only</li>
+                    </ul>
+                    <a href="#signup" class="cta-button">Start Free</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-name">Pro Driver</div>
+                    <div class="plan-price">$19.99<span style="font-size: 1rem;">/mo</span></div>
+                    <ul class="plan-features">
+                        <li>Unlimited predictions</li>
+                        <li>Multi-platform comparison</li>
+                        <li>Route optimization</li>
+                        <li>Earnings tracking</li>
+                        <li>Surge history & analytics</li>
+                        <li>All ANZ cities</li>
+                    </ul>
+                    <a href="#signup" class="cta-button">Start 7-Day Free Trial</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="plan-name">Fleet Manager</div>
+                    <div class="plan-price">$49.99<span style="font-size: 1rem;">/mo</span></div>
+                    <ul class="plan-features">
+                        <li>Up to 10 driver accounts</li>
+                        <li>Fleet analytics dashboard</li>
+                        <li>Driver performance comparison</li>
+                        <li>Bulk surge notifications</li>
+                        <li>Priority support</li>
+                        <li>Custom reporting</li>
+                    </ul>
+                    <a href="#signup" class="cta-button">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Drivers Are Saying</h2>
+            <p class="section-subtitle">Real feedback from drivers who've transformed their earnings</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"I was skeptical at first, but TaxiFlow AI has genuinely changed my game. I'm making an extra $150-200 per week just by following the surge predictions. The app paid for itself in the first three days."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Marcus R.</h4>
+                            <p>Full-time Uber Driver, Auckland</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"The multi-platform comparison is a game-changer. I used to just stick with Uber, but now I know when Lyft is paying better. My hourly rate has gone from $18 to $23 on average."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SL</div>
+                        <div class="author-info">
+                            <h4>Sarah L.</h4>
+                            <p>Part-time Driver, Melbourne</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"Finally, an app that understands Sydney traffic! The positioning recommendations have cut my empty driving time in half. I'm spending less on fuel and making more money - perfect combination."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DK</div>
+                        <div class="author-info">
+                            <h4>David K.</h4>
+                            <p>Weekend Driver, Sydney</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How accurate are the surge predictions?</div>
+                    <div class="faq-answer">Our AI achieves 78% accuracy for surge predictions within a 30-minute window and 85% accuracy for 2-hour predictions. We continuously improve our models with real-world data from thousands of drivers.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Is my data safe and private?</div>
+                    <div class="faq-answer">Absolutely. We only access publicly available APIs and never store your personal information, trip details, or passenger data. All data is encrypted and processed locally on your device where possible.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Which platforms does TaxiFlow AI work with?</div>
+                    <div class="faq-answer">Currently, we support Uber, Lyft, and Ola across Auckland, Wellington, Sydney, Melbourne, and Brisbane. We're adding more platforms and cities based on driver demand.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I cancel my subscription anytime?</div>
+                    <div class="faq-answer">Yes, you can cancel your subscription at any time with no penalties. Your account will remain active until the end of your current billing period, and you can reactivate whenever you want.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How much can I realistically expect to earn extra?</div>
+                    <div class="faq-answer">Most full-time drivers see 15-25% increase in earnings, which translates to $200-400 extra per week. Part-time drivers typically see $50-120 extra weekly. Results vary based on market conditions and how closely you follow recommendations.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TaxiFlow AI</h3>
+                    <p>Helping ride-share drivers in Australia and New Zealand maximize their earnings through AI-powered intelligence.</p>
+                    <div class="email-signup" id="signup">
+                        <input type="email" class="email-input" placeholder="Enter your email">
+                        <button class="cta-button">Get App Link</button>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <p><a href="#features">Surge Prediction</a></p>
+                    <p><a href="#features">Rate Comparison</a></p>
+                    <p><a href="#features">Smart Positioning</a></p>
+                    <p><a href="#features">Earnings Analytics</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="#faq">FAQ</a></p>
+                    <p><a href="#">Help Center</a></p>
+                    <p><a href="#">Contact Us</a></p>
+                    <p><a href="#">Driver Community</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Cities</h3>
+                    <p>Auckland</p>
+                    <p>Wellington</p>
+                    <p>Sydney</p>
+                    <p>Melbourne</p>
+                    <p>Brisbane</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TaxiFlow AI. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
