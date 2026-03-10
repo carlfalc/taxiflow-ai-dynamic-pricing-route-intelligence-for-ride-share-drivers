@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowDriver AI - Your AI Co-Driver for Maximum Earnings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>FlowDriver - AI-Powered Earnings for Ride-Share Drivers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,113 +15,97 @@
         }
 
         :root {
-            --electric-blue: #0066FF;
-            --bright-green: #00CC66;
-            --white: #FFFFFF;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --cream: #faf8f5;
+            --forest: #2d5016;
+            --brown: #8b4513;
+            --terracotta: #d2691e;
+            --sage: #87a96b;
+            --warm-white: #fcfaf8;
+            --text-dark: #2c3e2d;
         }
 
         body {
             font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
             line-height: 1.6;
-            color: var(--white);
             overflow-x: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #2196F3 50%, #21CBF3 75%, #4CAF50 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            min-height: 100vh;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
+        /* Navigation */
         .nav {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            padding: 1rem 2rem;
             transition: all 0.3s ease;
-            padding: 20px 0;
+            background: rgba(250, 248, 245, 0.8);
+            backdrop-filter: blur(20px);
         }
 
         .nav.scrolled {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 15px 0;
+            background: rgba(250, 248, 245, 0.95);
+            box-shadow: 0 8px 32px rgba(45, 80, 22, 0.1);
         }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 28px;
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--forest);
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
-            align-items: center;
+            list-style: none;
+            gap: 2rem;
         }
 
-        .nav-link {
-            color: var(--white);
+        .nav-links a {
             text-decoration: none;
+            color: var(--text-dark);
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
-            color: var(--bright-green);
-            transform: translateY(-2px);
+        .nav-links a:hover {
+            color: var(--forest);
         }
 
-        .cta-button {
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
-            color: var(--white);
-            padding: 12px 24px;
+        .nav-cta {
+            background: linear-gradient(135deg, var(--forest), var(--sage));
+            color: white;
+            padding: 0.7rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 204, 102, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.5);
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
         }
 
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
+            padding: 0 2rem;
             overflow: hidden;
+            background: linear-gradient(135deg, var(--cream) 0%, #f5f2ec 100%);
         }
 
         .hero::before {
@@ -129,475 +115,520 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600') center/cover;
-            opacity: 0.1;
+            background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.03;
             z-index: -1;
         }
 
-        .floating-shapes {
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
+            color: var(--forest);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--brown);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, var(--terracotta), #ff6b35);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(210, 105, 30, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(210, 105, 30, 0.4);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--forest), var(--sage));
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(45, 80, 22, 0.3);
+            transform: rotate(-5deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .phone-screen {
+            margin: 20px;
+            height: calc(100% - 40px);
+            background: var(--warm-white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .floating-elements {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
         }
 
-        .floating-shape {
+        .floating-circle {
             position: absolute;
-            background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 204, 102, 0.2));
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            background: linear-gradient(135deg, var(--sage), var(--terracotta));
+            opacity: 0.1;
+            animation: floatRandom 8s ease-in-out infinite;
         }
 
-        .floating-shape:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-shape:nth-child(2) {
+        .floating-circle:nth-child(1) {
             width: 60px;
             height: 60px;
-            top: 60%;
-            right: 20%;
-            animation-delay: 2s;
+            top: 10%;
+            left: 80%;
+            animation-delay: -2s;
         }
 
-        .floating-shape:nth-child(3) {
+        .floating-circle:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 70%;
+            left: 10%;
+            animation-delay: -4s;
+        }
+
+        .floating-circle:nth-child(3) {
             width: 80px;
             height: 80px;
-            bottom: 30%;
-            left: 70%;
-            animation-delay: 4s;
+            top: 40%;
+            right: -10%;
+            animation-delay: -6s;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(48px, 8vw, 72px);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--white), var(--bright-green), var(--electric-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 500px;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .primary-cta {
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
-            color: var(--white);
-            padding: 16px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.3);
-        }
-
-        .primary-cta:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 40px rgba(0, 204, 102, 0.5);
-        }
-
-        .secondary-cta {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .secondary-cta:hover {
-            transform: translateX(5px);
-            color: var(--bright-green);
-        }
-
-        .hero-visual {
-            position: relative;
-        }
-
-        .phone-mockup {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .phone-frame {
-            width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 40px;
-            padding: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            animation: phoneFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes phoneFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .stats-strip {
-            padding: 80px 0;
+        /* Interactive Stats */
+        .stats-section {
+            padding: 6rem 2rem;
+            background: var(--warm-white);
             position: relative;
         }
 
         .stats-container {
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
             text-align: center;
         }
 
-        .stat-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .stat-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 16px;
-            opacity: 0.8;
-        }
-
-        .features {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .features-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .features-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .features-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--white), var(--bright-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            margin-top: 80px;
-        }
-
-        .feature-card {
-            padding: 40px;
-            transition: all 0.3s ease;
+        .stat-card {
+            background: var(--cream);
+            padding: 2.5rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(45, 80, 22, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-card::before {
+        .stat-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 204, 102, 0.1));
+            height: 4px;
+            background: linear-gradient(90deg, var(--forest), var(--terracotta));
+            border-radius: 25px 25px 0 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 15px 50px rgba(45, 80, 22, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--forest);
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--brown);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--cream) 0%, #f0ede6 100%);
+            position: relative;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-title h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: var(--warm-white);
+            padding: 3rem 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(45, 80, 22, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(135, 169, 107, 0.1), transparent);
+            transform: rotate(-45deg);
+            transition: all 0.6s ease;
             opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .feature-card:hover::before {
             opacity: 1;
+            top: -100%;
+            left: -100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(45, 80, 22, 0.15);
         }
 
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            background: linear-gradient(135deg, var(--forest), var(--sage));
             border-radius: 20px;
-            margin-bottom: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            animation: pulse 3s ease-in-out infinite;
         }
 
         .feature-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
+            color: var(--forest);
+            margin-bottom: 1rem;
         }
 
         .feature-card p {
-            opacity: 0.8;
+            color: var(--brown);
             line-height: 1.6;
-            position: relative;
-            z-index: 1;
         }
 
-        .how-it-works {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .how-it-works-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 60px;
-            margin-top: 80px;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: 700;
-            margin: 0 auto 24px;
-            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.3);
-        }
-
-        .step h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
-
+        /* Pricing Section */
         .pricing {
-            padding: 120px 0;
-            position: relative;
+            padding: 8rem 2rem;
+            background: var(--warm-white);
         }
 
         .pricing-container {
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 40px;
+            text-align: center;
+        }
+
+        .pricing-title {
+            margin-bottom: 4rem;
+        }
+
+        .pricing-title h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .pricing-card {
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s ease;
+            background: var(--cream);
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(45, 80, 22, 0.1);
             position: relative;
+            transition: all 0.3s ease;
         }
 
-        .pricing-card.featured {
+        .pricing-card.popular {
+            background: linear-gradient(135deg, var(--forest), var(--sage));
+            color: white;
             transform: scale(1.05);
-            border: 2px solid var(--bright-green);
-            box-shadow: 0 20px 60px rgba(0, 204, 102, 0.3);
+            box-shadow: 0 15px 50px rgba(45, 80, 22, 0.3);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--terracotta);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         .pricing-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(45, 80, 22, 0.2);
         }
 
-        .pricing-card.featured:hover {
-            transform: translateY(-10px) scale(1.07);
+        .pricing-card.popular:hover {
+            transform: translateY(-5px) scale(1.05);
         }
 
         .plan-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 1rem;
         }
 
         .plan-price {
-            font-size: 48px;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 0.5rem;
         }
 
         .plan-features {
             list-style: none;
-            margin: 32px 0;
+            margin: 2rem 0;
+            text-align: left;
         }
 
         .plan-features li {
-            padding: 8px 0;
-            opacity: 0.8;
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-weight: bold;
+        }
+
+        .pricing-card.popular .plan-features li::before {
+            color: var(--terracotta);
         }
 
         .plan-cta {
-            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
-            color: var(--white);
-            padding: 16px 32px;
+            background: var(--terracotta);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
             border-radius: 50px;
-            text-decoration: none;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-block;
             width: 100%;
+        }
+
+        .pricing-card.popular .plan-cta {
+            background: white;
+            color: var(--forest);
         }
 
         .plan-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.5);
+            box-shadow: 0 8px 25px rgba(210, 105, 30, 0.3);
         }
 
+        /* Testimonials */
         .testimonials {
-            padding: 120px 0;
-            position: relative;
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--cream) 0%, #f5f2ec 100%);
             overflow: hidden;
         }
 
         .testimonials-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px;
         }
 
-        .testimonial-marquee {
+        .testimonials-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-title h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: var(--forest);
+        }
+
+        .testimonials-scroll {
             display: flex;
-            gap: 40px;
-            animation: marquee 30s linear infinite;
-            margin-top: 80px;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
         }
 
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .testimonial-card {
+            min-width: 350px;
+            background: var(--warm-white);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(45, 80, 22, 0.1);
+            position: relative;
         }
 
-        .testimonial {
-            min-width: 400px;
-            padding: 40px;
-            flex-shrink: 0;
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--sage);
+            opacity: 0.3;
+            font-family: serif;
         }
 
         .testimonial-text {
-            font-size: 18px;
-            margin-bottom: 24px;
             font-style: italic;
-            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            color: var(--brown);
         }
 
         .testimonial-author {
-            font-weight: 600;
-            color: var(--bright-green);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sage), var(--terracotta));
+        }
+
+        .author-info h4 {
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        .author-info p {
+            color: var(--brown);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
         .faq {
-            padding: 120px 0;
+            padding: 8rem 2rem;
+            background: var(--warm-white);
         }
 
         .faq-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 40px;
+        }
+
+        .faq-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faq-title h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            color: var(--forest);
         }
 
         .faq-item {
-            margin-bottom: 24px;
-            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            background: var(--cream);
+            border-radius: 15px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 80, 22, 0.1);
         }
 
         .faq-question {
-            padding: 24px;
-            cursor: pointer;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
             font-weight: 600;
+            color: var(--forest);
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -605,90 +636,178 @@
         }
 
         .faq-question:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(135, 169, 107, 0.1);
         }
 
         .faq-answer {
-            padding: 0 24px 24px;
-            opacity: 0.8;
+            padding: 0 1.5rem;
             max-height: 0;
             overflow: hidden;
             transition: all 0.3s ease;
+            color: var(--brown);
         }
 
-        .faq-item.active .faq-answer {
+        .faq-answer.active {
             max-height: 200px;
+            padding: 0 1.5rem 1.5rem;
         }
 
+        /* Final CTA */
         .final-cta {
-            padding: 120px 0;
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--forest), var(--sage));
+            color: white;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
-        .final-cta-container {
-            max-width: 800px;
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?w=800');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+
+        .final-cta-content {
+            max-width: 600px;
             margin: 0 auto;
-            padding: 60px 40px;
             position: relative;
+            z-index: 2;
         }
 
         .final-cta h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--white), var(--bright-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
 
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .final-cta-button {
+            background: var(--terracotta);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(210, 105, 30, 0.3);
+        }
+
+        .final-cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(210, 105, 30, 0.4);
+        }
+
+        /* Footer */
         .footer {
-            padding: 60px 0;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(20px);
+            background: var(--text-dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
         }
 
         .footer-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
         }
 
-        .footer-section h4 {
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--bright-green);
+        .footer-brand {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        .footer-section a {
-            color: var(--white);
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: var(--sage);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            display: block;
-            margin-bottom: 8px;
+            transition: color 0.3s ease;
         }
 
-        .footer-section a:hover {
-            opacity: 1;
-            color: var(--bright-green);
-            transform: translateX(5px);
+        .footer-links a:hover {
+            color: white;
         }
 
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: rotate(-5deg) translateY(0px); }
+            50% { transform: rotate(-5deg) translateY(-20px); }
+        }
+
+        @keyframes floatRandom {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-15px) translateX(10px); }
+            66% { transform: translateY(5px) translateX(-5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-350px * 6)); }
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 40px;
-            }
-
             .nav-links {
                 display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
             .features-grid {
@@ -699,139 +818,111 @@
                 grid-template-columns: 1fr;
             }
 
-            .testimonial-marquee {
-                animation: none;
-                flex-direction: column;
+            .testimonial-card {
+                min-width: 300px;
             }
 
-            .testimonial {
-                min-width: 100%;
+            .final-cta h2 {
+                font-size: 2.5rem;
             }
-        }
-
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hidden {
-            opacity: 0;
-            transform: translateY(30px);
         }
     </style>
 </head>
 <body>
-    <nav class="nav" id="nav">
-        <div class="nav-container">
-            <div class="logo">FlowDriver AI</div>
-            <div class="nav-links">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#pricing" class="nav-link">Pricing</a>
-                <a href="#testimonials" class="nav-link">Reviews</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#" class="cta-button">Start Free Trial</a>
-            </div>
+    <nav class="nav" id="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">FlowDriver</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#" class="nav-cta">Start Free Trial</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="floating-shapes">
-            <div class="floating-shape"></div>
-            <div class="floating-shape"></div>
-            <div class="floating-shape"></div>
+        <div class="floating-elements">
+            <div class="floating-circle"></div>
+            <div class="floating-circle"></div>
+            <div class="floating-circle"></div>
         </div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Your AI Co-Driver for Maximum Earnings</h1>
-                <p>Stop driving blind. FlowDriver AI predicts surge pricing, finds optimal routes, and compares platforms in real-time. Boost your income by 25% with data-driven intelligence.</p>
-                <div class="hero-cta">
-                    <a href="#" class="primary-cta">Start Earning More</a>
-                    <a href="#" class="secondary-cta">Watch Demo →</a>
-                </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Turn Every Mile Into Maximum Earnings</h1>
+                <p>AI-powered surge prediction and route optimization that helps ride-share drivers earn 25% more per hour. Stop driving blind, start driving smart.</p>
+                <a href="#" class="hero-cta">
+                    <span>Start Earning More</span>
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+                    </svg>
+                </a>
             </div>
             <div class="hero-visual">
                 <div class="phone-mockup">
-                    <div class="phone-frame glass-card">
-                        <div style="background: url('https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?w=400') center/cover; border-radius: 20px; height: 100%;"></div>
+                    <div class="phone-screen">
+                        <div style="height: 40px; background: linear-gradient(90deg, var(--forest), var(--sage)); border-radius: 10px; margin-bottom: 20px;"></div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <div style="width: 30%; height: 60px; background: var(--terracotta); border-radius: 10px; opacity: 0.3;"></div>
+                            <div style="width: 30%; height: 60px; background: var(--sage); border-radius: 10px; opacity: 0.5;"></div>
+                            <div style="width: 30%; height: 60px; background: var(--forest); border-radius: 10px;"></div>
+                        </div>
+                        <div style="height: 120px; background: linear-gradient(135deg, var(--cream), var(--sage)); border-radius: 15px; margin-bottom: 15px; opacity: 0.7;"></div>
+                        <div style="height: 80px; background: var(--terracotta); border-radius: 10px; opacity: 0.4;"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="stats-strip">
+    <section class="stats-section">
         <div class="stats-container">
-            <div class="stat-item">
-                <span class="stat-number" data-target="25">0</span>
-                <span class="stat-label">% Average Earnings Increase</span>
+            <div class="stat-card" data-target="25">
+                <div class="stat-number">0%</div>
+                <div class="stat-label">Earnings Increase</div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="15000">0</span>
-                <span class="stat-label">Active Drivers</span>
+            <div class="stat-card" data-target="2847">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Active Drivers</div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="400">0</span>
-                <span class="stat-label">Extra Weekly Income</span>
+            <div class="stat-card" data-target="92">
+                <div class="stat-number">0%</div>
+                <div class="stat-label">Prediction Accuracy</div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="92">0</span>
-                <span class="stat-label">% Prediction Accuracy</span>
+            <div class="stat-card" data-target="47">
+                <div class="stat-number">$0</div>
+                <div class="stat-label">Extra Daily Earnings</div>
             </div>
         </div>
     </section>
 
     <section class="features" id="features">
         <div class="features-container">
-            <div class="features-header">
-                <h2>Intelligence That Pays</h2>
-                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Every feature is designed to put more money in your pocket. Stop guessing, start earning with AI-powered insights.</p>
+            <div class="features-title">
+                <h2>Your AI Co-Driver</h2>
+                <p>Advanced algorithms working behind the scenes to maximize your earnings</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card glass-card">
+                <div class="feature-card">
                     <div class="feature-icon">🎯</div>
-                    <h3>Surge Prediction Engine</h3>
-                    <p>AI analyzes weather, events, traffic patterns, and historical data to predict surge pricing up to 2 hours ahead. Never miss another surge opportunity.</p>
+                    <h3>Surge Prediction AI</h3>
+                    <p>Know exactly when and where surge pricing will hit. Our AI analyzes weather, events, traffic patterns, and historical data to predict surge zones 30 minutes ahead.</p>
                 </div>
-                <div class="feature-card glass-card">
+                <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Multi-Platform Comparison</h3>
-                    <p>Real-time rate comparison across Uber, Lyft, and Ola. Know exactly which platform offers better rates for your current location and time.</p>
+                    <p>Real-time rate comparison across Uber, Lyft, and Ola. Never accept a low-paying ride again when better options are available on other platforms.</p>
                 </div>
-                <div class="feature-card glass-card">
+                <div class="feature-card">
                     <div class="feature-icon">🗺️</div>
                     <h3>Smart Positioning</h3>
-                    <p>Dynamic recommendations for optimal driver positioning based on traffic, fuel costs, and predicted demand. Minimize dead miles, maximize earnings.</p>
+                    <p>Dynamic recommendations on where to wait for maximum trip frequency. Accounts for traffic, fuel costs, and your current location to optimize your positioning.</p>
                 </div>
-                <div class="feature-card glass-card">
+                <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>Earnings Analytics</h3>
-                    <p>Detailed insights into your earning patterns, best performing areas, and optimization opportunities. Track your improvement over time.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="how-it-works">
-        <div class="how-it-works-container">
-            <div class="features-header">
-                <h2>How It Works</h2>
-                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Three simple steps to transform your driving strategy and boost your income.</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Connect Your Apps</h3>
-                    <p>Link your existing Uber, Lyft, and Ola driver accounts. Our AI analyzes your driving patterns and preferences.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Receive AI Insights</h3>
-                    <p>Get real-time predictions, positioning recommendations, and platform comparisons delivered straight to your phone.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Earn More Money</h3>
-                    <p>Follow our AI recommendations to increase your earnings by 15-25% while working the same hours.</p>
+                    <p>Track your performance with detailed insights on hourly earnings, surge capture rate, and platform efficiency. See exactly how FlowDriver boosts your income.</p>
                 </div>
             </div>
         </div>
@@ -839,50 +930,47 @@
 
     <section class="pricing" id="pricing">
         <div class="pricing-container">
-            <div class="features-header">
+            <div class="pricing-title">
                 <h2>Choose Your Plan</h2>
-                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Every plan pays for itself within the first week. Start free, upgrade when you see results.</p>
+                <p>Start free, upgrade when you see the results</p>
             </div>
             <div class="pricing-grid">
-                <div class="pricing-card glass-card">
+                <div class="pricing-card">
                     <h3 class="plan-name">Basic</h3>
-                    <div class="plan-price">Free</div>
-                    <p>Perfect for trying FlowDriver</p>
+                    <div class="plan-price">$0<span style="font-size: 1rem;">/mo</span></div>
                     <ul class="plan-features">
-                        <li>✓ Real-time surge alerts</li>
-                        <li>✓ Basic heat maps</li>
-                        <li>✓ 5 predictions per day</li>
-                        <li>✓ Community support</li>
+                        <li>Real-time surge alerts</li>
+                        <li>Basic heat maps</li>
+                        <li>5 predictions per day</li>
+                        <li>Email support</li>
                     </ul>
-                    <a href="#" class="plan-cta">Start Free</a>
+                    <button class="plan-cta">Get Started Free</button>
                 </div>
-                <div class="pricing-card glass-card featured">
+                <div class="pricing-card popular">
                     <h3 class="plan-name">Pro Driver</h3>
-                    <div class="plan-price">$19.99<span style="font-size: 18px; opacity: 0.6;">/mo</span></div>
-                    <p>For serious drivers</p>
+                    <div class="plan-price">$19.99<span style="font-size: 1rem;">/mo</span></div>
                     <ul class="plan-features">
-                        <li>✓ Unlimited predictions</li>
-                        <li>✓ Multi-platform comparison</li>
-                        <li>✓ Route optimization</li>
-                        <li>✓ Earnings tracking</li>
-                        <li>✓ Surge history</li>
-                        <li>✓ Priority support</li>
+                        <li>Unlimited predictions</li>
+                        <li>Multi-platform comparison</li>
+                        <li>Route optimization</li>
+                        <li>Earnings tracking</li>
+                        <li>Surge history analysis</li>
+                        <li>Priority support</li>
                     </ul>
-                    <a href="#" class="plan-cta">Start 7-Day Free Trial</a>
+                    <button class="plan-cta">Start 7-Day Trial</button>
                 </div>
-                <div class="pricing-card glass-card">
+                <div class="pricing-card">
                     <h3 class="plan-name">Fleet Manager</h3>
-                    <div class="plan-price">$49.99<span style="font-size: 18px; opacity: 0.6;">/mo</span></div>
-                    <p>For fleet operators</p>
+                    <div class="plan-price">$49.99<span style="font-size: 1rem;">/mo</span></div>
                     <ul class="plan-features">
-                        <li>✓ Up to 10 driver accounts</li>
-                        <li>✓ Fleet analytics dashboard</li>
-                        <li>✓ Driver performance comparison</li>
-                        <li>✓ Bulk surge notifications</li>
-                        <li>✓ Custom reporting</li>
-                        <li>✓ Dedicated support</li>
+                        <li>Up to 10 driver accounts</li>
+                        <li>Fleet analytics dashboard</li>
+                        <li>Driver performance comparison</li>
+                        <li>Bulk surge notifications</li>
+                        <li>API access</li>
+                        <li>Dedicated support</li>
                     </ul>
-                    <a href="#" class="plan-cta">Contact Sales</a>
+                    <button class="plan-cta">Contact Sales</button>
                 </div>
             </div>
         </div>
@@ -890,34 +978,69 @@
 
     <section class="testimonials" id="testimonials">
         <div class="testimonials-container">
-            <div class="features-header">
-                <h2>Drivers Love FlowDriver</h2>
-                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Real drivers, real results. See how FlowDriver AI is transforming earnings across Australia and New Zealand.</p>
+            <div class="testimonials-title">
+                <h2>What Drivers Say</h2>
             </div>
-            <div class="testimonial-marquee">
-                <div class="testimonial glass-card">
-                    <p class="testimonial-text">"FlowDriver predicted a surge 90 minutes before it hit. I positioned myself perfectly and made $180 in 3 hours. This app pays for itself every day."</p>
-                    <p class="testimonial-author">— Marcus Chen, Sydney</p>
+            <div class="testimonials-scroll">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">FlowDriver helped me increase my weekly earnings by $180. The surge predictions are incredibly accurate, and I never waste time in dead zones anymore.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Marcus Chen</h4>
+                            <p>Full-time Uber Driver, Auckland</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial glass-card">
-                    <p class="testimonial-text">"The platform comparison feature is a game-changer. I used to stick with just Uber, now I know when Lyft is paying 30% more. My weekly earnings are up $300."</p>
-                    <p class="testimonial-author">— Sarah Williams, Melbourne</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The multi-platform comparison is a game-changer. I can see which app is paying better in real-time and switch accordingly. Brilliant tool!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Sarah Williams</h4>
+                            <p>Weekend Driver, Sydney</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial glass-card">
-                    <p class="testimonial-text">"I was skeptical about AI, but the positioning recommendations cut my dead miles by 40%. More money, less driving. What's not to love?"</p>
-                    <p class="testimonial-author">— David Park, Auckland</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">As a fleet owner, the analytics are invaluable. I can see which drivers are performing best and share positioning strategies across my team.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>David Kumar</h4>
+                            <p>Fleet Manager, Melbourne</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial glass-card">
-                    <p class="testimonial-text">"As a weekend driver, every trip counts. FlowDriver helps me maximize my limited time. I'm earning 25% more in half the time."</p>
-                    <p class="testimonial-author">— Emma Thompson, Brisbane</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The AI predictions are scary accurate. I've caught every major surge event in the CBD for the past month. My earnings are up 30%!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>James Rodriguez</h4>
+                            <p>Lyft Driver, Wellington</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial glass-card">
-                    <p class="testimonial-text">"The earnings analytics showed me I was working the wrong hours. After adjusting my schedule based on FlowDriver's insights, I'm making $200 more per week."</p>
-                    <p class="testimonial-author">— Jake Morrison, Wellington</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Simple, effective, profitable. FlowDriver pays for itself within the first week. Every driver should have this app.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Emma Thompson</h4>
+                            <p>Part-time Driver, Brisbane</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial glass-card">
-                    <p class="testimonial-text">"FlowDriver predicted a surge 90 minutes before it hit. I positioned myself perfectly and made $180 in 3 hours. This app pays for itself every day."</p>
-                    <p class="testimonial-author">— Marcus Chen, Sydney</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The positioning recommendations alone have saved me hours of empty driving. More trips, less fuel costs, higher profits.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Ryan Park</h4>
+                            <p>Uber Driver, Auckland</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -925,103 +1048,128 @@
 
     <section class="faq" id="faq">
         <div class="faq-container">
-            <div class="features-header">
+            <div class="faq-title">
                 <h2>Frequently Asked Questions</h2>
             </div>
-            <div class="faq-item glass-card">
-                <div class="faq-question">
+            <div class="faq-item">
+                <button class="faq-question">
                     How accurate are the surge predictions?
                     <span>+</span>
-                </div>
+                </button>
                 <div class="faq-answer">
-                    Our AI achieves 92% accuracy in surge prediction by analyzing weather data, local events, traffic patterns, and historical trends. We continuously improve our algorithms based on real-world results.
+                    <p>Our AI achieves 92% accuracy in predicting surge events 30 minutes in advance. We analyze weather patterns, local events, traffic data, and historical trends to provide reliable forecasts.</p>
                 </div>
             </div>
-            <div class="faq-item glass-card">
-                <div class="faq-question">
-                    Will this work with my existing driver apps?
+            <div class="faq-item">
+                <button class="faq-question">
+                    Does this work with all ride-share platforms?
                     <span>+</span>
-                </div>
+                </button>
                 <div class="faq-answer">
-                    Yes! FlowDriver integrates seamlessly with Uber, Lyft, and Ola through secure API connections. You don't need to change how you work - we just make you smarter about where and when to work.
+                    <p>Yes! FlowDriver supports Uber, Lyft, and Ola across Australia and New Zealand. We provide real-time rate comparisons and surge predictions for all supported platforms.</p>
                 </div>
             </div>
-            <div class="faq-item glass-card">
-                <div class="faq-question">
-                    How much can I realistically expect to earn?
+            <div class="faq-item">
+                <button class="faq-question">
+                    Will this drain my phone battery?
                     <span>+</span>
-                </div>
+                </button>
                 <div class="faq-answer">
-                    Most drivers see a 15-25% increase in earnings within the first month. This translates to $200-400 extra weekly income for full-time drivers, depending on your current earnings and how closely you follow our recommendations.
+                    <p>FlowDriver is optimized for minimal battery usage. The app uses efficient background processing and only updates when necessary, typically using less than 5% of your daily battery.</p>
                 </div>
             </div>
-            <div class="faq-item glass-card">
-                <div class="faq-question">
-                    Is my data safe and private?
+            <div class="faq-item">
+                <button class="faq-question">
+                    Is my driving data secure?
                     <span>+</span>
-                </div>
+                </button>
                 <div class="faq-answer">
-                    Absolutely. We use bank-level encryption and never store sensitive personal information. All data is anonymized and used only to provide you with better predictions. We never share your information with ride-share platforms or third parties.
+                    <p>Absolutely. We use bank-level encryption and never share your personal data. All location and earnings information is anonymized and used only to improve our AI predictions.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="final-cta">
-        <div class="final-cta-container glass-card">
-            <h2>Stop Leaving Money on the Table</h2>
-            <p style="font-size: 20px; margin-bottom: 40px; opacity: 0.9;">Join 15,000+ drivers who've already boosted their earnings with FlowDriver AI. Start your free trial today and see results within 24 hours.</p>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="#" class="primary-cta">Start 7-Day Free Trial</a>
-                <a href="#" class="secondary-cta">Schedule a Demo →</a>
-            </div>
-            <p style="margin-top: 16px; font-size: 14px; opacity: 0.6;">No credit card required • Cancel anytime • 30-day money-back guarantee</p>
+        <div class="final-cta-content">
+            <h2>Ready to Drive Smarter?</h2>
+            <p>Join thousands of drivers already earning more with FlowDriver AI. Start your free trial today and see the difference intelligent positioning makes.</p>
+            <a href="#" class="final-cta-button">Download FlowDriver</a>
         </div>
     </section>
 
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-section">
+            <div>
+                <div class="footer-brand">FlowDriver</div>
+                <p>AI-powered earnings optimization for ride-share drivers across Australia and New Zealand.</p>
+            </div>
+            <div class="footer-links">
                 <h4>Product</h4>
-                <a href="#">Features</a>
-                <a href="#">Pricing</a>
-                <a href="#">API</a>
-                <a href="#">Integrations</a>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
             </div>
-            <div class="footer-section">
+            <div class="footer-links">
                 <h4>Company</h4>
-                <a href="#">About</a>
-                <a href="#">Blog</a>
-                <a href="#">Careers</a>
-                <a href="#">Press</a>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
             </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <a href="#">Help Center</a>
-                <a href="#">Contact</a>
-                <a href="#">Status</a>
-                <a href="#">Community</a>
-            </div>
-            <div class="footer-section">
+            <div class="footer-links">
                 <h4>Legal</h4>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-                <a href="#">Security</a>
-                <a href="#">Compliance</a>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FlowDriver. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         // Navigation scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
             } else {
-                nav.classList.remove('scrolled');
+                navbar.classList.remove('scrolled');
             }
         });
+
+        // Animated counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-card');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const numberElement = counter.querySelector('.stat-number');
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    if (counter.querySelector('.stat-label').textContent.includes('$')) {
+                        numberElement.textContent = '$' + Math.ceil(current);
+                    } else {
+                        numberElement.textContent = Math.ceil(current) + (counter.querySelector('.stat-label').textContent.includes('%') ? '%' : '');
+                    }
+                }, 50);
+            });
+        }
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -1029,69 +1177,82 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    if (entry.target.closest('.stats-section')) {
+                        animateCounters();
+                    }
                 }
             });
         }, observerOptions);
 
-        // Observe all stat items
-        document.querySelectorAll('.stat-item').forEach(item => {
-            observer.observe(item);
-        });
-
-        // Animated counters
-        function animateCounter(element, target) {
-            let count = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                count += increment;
-                if (count >= target) {
-                    element.textContent = target + (target === 25 || target === 92 ? '' : '+');
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(count) + (target === 25 || target === 92 ? '' : '+');
-                }
-            }, 40);
-        }
-
-        // Trigger counters when stats become visible
-        const statsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target.querySelector('.stat-number');
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    animateCounter(counter, target);
-                    statsObserver.unobserve(entry.target);
-                }
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card, .stat-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.stat-item').forEach(item => {
-            statsObserver.observe(item);
-        });
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = answer.classList.contains('active');
+                    
+                    // Close all other answers
+                    document.querySelectorAll('.faq-answer').forEach(a => {
+                        a.classList.remove('active');
+                    });
+                    
+                    // Toggle current answer
+                    if (!isActive) {
+                        answer.classList.add('active');
+                        question.querySelector('span').textContent = '−';
+                    } else {
+                        question.querySelector('span').textContent = '+';
+                    }
+                });
+            });
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
+            // Interactive feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-8px) scale(1.02) rotate(1deg)';
                 });
                 
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+                });
+            });
+
+            // Interactive stat cards
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.style.transform = 'translateY(-10px) rotate(2deg) scale(1.05)';
+                    setTimeout(() => {
+                        card.style.transform = 'translateY(0) rotate(0deg) scale(1)';
+                    }, 200);
+                });
+            });
+
+            // Parallax effect for hero section
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.backgroundPositionY = rate + 'px';
                 }
-                
-                // Update icon
-                const icon = this.querySelector('span');
-                icon.textContent = isActive ? '+' : '−';
             });
         });
 
@@ -1107,23 +1268,6 @@
                     });
                 }
             });
-        });
-
-        // Parallax effect for floating shapes
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.floating-shape');
-            
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-
-        // Add entrance animations to feature cards
-        document.querySelectorAll('.feature-card, .pricing-card, .step').forEach(card => {
-            observer.observe(card);
         });
     </script>
 </body>
