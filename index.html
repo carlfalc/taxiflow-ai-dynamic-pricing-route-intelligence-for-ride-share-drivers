@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaxiFlow AI - Maximize Your Ride-Share Earnings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>FlowDriver AI - Your AI Co-Driver for Maximum Earnings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,482 +12,686 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --electric-blue: #0066FF;
+            --bright-green: #00CC66;
+            --white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #ffffff;
+            color: var(--white);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #2196F3 50%, #21CBF3 75%, #4CAF50 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0, 102, 255, 0.1);
+            transition: all 0.3s ease;
+            padding: 20px 0;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
         }
 
         .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 40px;
         }
 
         .logo {
-            font-size: 24px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
             font-weight: 700;
-            color: #0066FF;
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
-            gap: 30px;
+            gap: 40px;
+            align-items: center;
         }
 
-        .nav-links a {
+        .nav-link {
+            color: var(--white);
             text-decoration: none;
-            color: #333;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: #0066FF;
+        .nav-link:hover {
+            color: var(--bright-green);
+            transform: translateY(-2px);
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #0066FF, #0052CC);
-            color: white;
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            color: var(--white);
             padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 204, 102, 0.3);
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.5);
         }
 
-        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
-            color: white;
-            padding: 120px 0 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-stats {
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 204, 102, 0.2));
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 30%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--white), var(--bright-green), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 500px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .primary-cta {
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.3);
+        }
+
+        .primary-cta:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 204, 102, 0.5);
+        }
+
+        .secondary-cta {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-cta:hover {
+            transform: translateX(5px);
+            color: var(--bright-green);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phone-frame {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: phoneFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .stats-strip {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
             text-align: center;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
             font-weight: 700;
-            color: #00CC66;
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: block;
+            margin-bottom: 8px;
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 16px;
             opacity: 0.8;
         }
 
-        /* Features Section */
         .features {
-            padding: 100px 0;
-            background: #f8faff;
+            padding: 120px 0;
+            position: relative;
         }
 
-        .section-title {
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .features-header {
             text-align: center;
-            font-size: 2.5rem;
+            margin-bottom: 80px;
+        }
+
+        .features-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 60px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--white), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 40px;
+            margin-top: 80px;
         }
 
         .feature-card {
-            background: white;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 204, 102, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #0066FF, #00CC66);
-            border-radius: 15px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            border-radius: 20px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: white;
-            margin-bottom: 20px;
+            font-size: 32px;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
             font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card p {
-            color: #666;
-            line-height: 1.7;
+            opacity: 0.8;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
-        /* How It Works */
         .how-it-works {
-            padding: 100px 0;
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .how-it-works-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-top: 80px;
         }
 
         .step {
             text-align: center;
+            position: relative;
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
-            background: #0066FF;
-            color: white;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 32px;
             font-weight: 700;
-            margin: 0 auto 20px;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.3);
         }
 
         .step h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            margin-bottom: 16px;
         }
 
-        .step p {
-            color: #666;
-        }
-
-        /* Pricing */
         .pricing {
-            padding: 100px 0;
-            background: #f8faff;
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .pricing-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
         }
 
         .pricing-card {
-            background: white;
             padding: 40px;
-            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        .pricing-card.popular {
+        .pricing-card.featured {
             transform: scale(1.05);
-            border: 3px solid #0066FF;
-        }
-
-        .popular-badge {
-            background: #0066FF;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+            border: 2px solid var(--bright-green);
+            box-shadow: 0 20px 60px rgba(0, 204, 102, 0.3);
         }
 
         .pricing-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
         }
 
-        .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-5px);
+        .pricing-card.featured:hover {
+            transform: translateY(-10px) scale(1.07);
         }
 
         .plan-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #333;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
         }
 
         .plan-price {
-            font-size: 3rem;
+            font-size: 48px;
             font-weight: 700;
-            color: #0066FF;
-            margin-bottom: 30px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .plan-features {
             list-style: none;
-            margin-bottom: 30px;
+            margin: 32px 0;
         }
 
         .plan-features li {
             padding: 8px 0;
-            color: #666;
-            border-bottom: 1px solid #eee;
+            opacity: 0.8;
         }
 
-        .plan-features li:last-child {
-            border-bottom: none;
+        .plan-cta {
+            background: linear-gradient(135deg, var(--bright-green), var(--electric-blue));
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            width: 100%;
         }
 
-        /* Testimonials */
+        .plan-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 204, 102, 0.5);
+        }
+
         .testimonials {
-            padding: 100px 0;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .testimonial-marquee {
+            display: flex;
+            gap: 40px;
+            animation: marquee 30s linear infinite;
+            margin-top: 80px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .testimonial {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-width: 400px;
+            padding: 40px;
+            flex-shrink: 0;
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: #666;
+            font-size: 18px;
+            margin-bottom: 24px;
             font-style: italic;
+            opacity: 0.9;
         }
 
         .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #0066FF;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        .author-info h4 {
             font-weight: 600;
-            color: #333;
+            color: var(--bright-green);
         }
 
-        .author-info p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* FAQ */
         .faq {
-            padding: 100px 0;
-            background: #f8faff;
+            padding: 120px 0;
         }
 
-        .faq-list {
+        .faq-container {
             max-width: 800px;
-            margin: 60px auto 0;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         .faq-item {
-            background: white;
-            margin-bottom: 20px;
-            border-radius: 10px;
+            margin-bottom: 24px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .faq-question {
-            padding: 25px;
-            font-weight: 600;
-            color: #333;
+            padding: 24px;
             cursor: pointer;
-            border-bottom: 1px solid #eee;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .faq-answer {
-            padding: 25px;
-            color: #666;
-            line-height: 1.7;
+            padding: 0 24px 24px;
+            opacity: 0.8;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            padding: 60px 0 30px;
+        .faq-item.active .faq-answer {
+            max-height: 200px;
         }
 
-        .footer-content {
+        .final-cta {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .final-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+        }
+
+        .final-cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--white), var(--bright-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
         }
 
-        .footer-section h3 {
-            font-size: 1.2rem;
+        .footer-section h4 {
             font-weight: 600;
-            margin-bottom: 20px;
-            color: #0066FF;
+            margin-bottom: 16px;
+            color: var(--bright-green);
         }
 
-        .footer-section p, .footer-section a {
-            color: #ccc;
+        .footer-section a {
+            color: var(--white);
             text-decoration: none;
-            line-height: 1.7;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 8px;
         }
 
         .footer-section a:hover {
-            color: #0066FF;
+            opacity: 1;
+            color: var(--bright-green);
+            transform: translateX(5px);
         }
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #555;
-            color: #999;
-        }
-
-        /* Email Signup */
-        .email-signup {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .email-input {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .email-input:focus {
-            outline: none;
-            border-color: #0066FF;
-        }
-
-        /* Mobile Responsive */
         @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-
             .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps {
                 grid-template-columns: 1fr;
             }
 
@@ -495,298 +699,432 @@
                 grid-template-columns: 1fr;
             }
 
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .email-signup {
+            .testimonial-marquee {
+                animation: none;
                 flex-direction: column;
             }
+
+            .testimonial {
+                min-width: 100%;
+            }
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">TaxiFlow AI</div>
-                <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#testimonials">Reviews</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-                <a href="#signup" class="cta-button">Start Free Trial</a>
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="logo">FlowDriver AI</div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#" class="cta-button">Start Free Trial</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h1>Stop Driving Blind.<br>Start Earning Smart.</h1>
-            <p class="subtitle">AI-powered surge prediction and route intelligence for Uber & Lyft drivers. Increase your earnings by up to 25% with data-driven decisions.</p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">25%</span>
-                    <span class="stat-label">Average Earnings Increase</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">40%</span>
-                    <span class="stat-label">Less Empty Driving</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">$400</span>
-                    <span class="stat-label">Weekly Savings Potential</span>
+        <div class="floating-shapes">
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Your AI Co-Driver for Maximum Earnings</h1>
+                <p>Stop driving blind. FlowDriver AI predicts surge pricing, finds optimal routes, and compares platforms in real-time. Boost your income by 25% with data-driven intelligence.</p>
+                <div class="hero-cta">
+                    <a href="#" class="primary-cta">Start Earning More</a>
+                    <a href="#" class="secondary-cta">Watch Demo →</a>
                 </div>
             </div>
-            
-            <a href="#signup" class="cta-button" style="font-size: 1.2rem; padding: 15px 30px;">Download Free App</a>
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-frame glass-card">
+                        <div style="background: url('https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?w=400') center/cover; border-radius: 20px; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Your AI Co-Driver</h2>
-            <p class="section-subtitle">Three game-changing tools that give you the competitive edge other drivers don't have</p>
-            
+    <section class="stats-strip">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number" data-target="25">0</span>
+                <span class="stat-label">% Average Earnings Increase</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="15000">0</span>
+                <span class="stat-label">Active Drivers</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="400">0</span>
+                <span class="stat-label">Extra Weekly Income</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="92">0</span>
+                <span class="stat-label">% Prediction Accuracy</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="features-header">
+                <h2>Intelligence That Pays</h2>
+                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Every feature is designed to put more money in your pocket. Stop guessing, start earning with AI-powered insights.</p>
+            </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card glass-card">
                     <div class="feature-icon">🎯</div>
-                    <h3>AI Surge Prediction</h3>
-                    <p>Know exactly when and where surge pricing will hit before it happens. Our AI analyzes weather, events, traffic patterns, and historical data to predict surges up to 2 hours in advance.</p>
+                    <h3>Surge Prediction Engine</h3>
+                    <p>AI analyzes weather, events, traffic patterns, and historical data to predict surge pricing up to 2 hours ahead. Never miss another surge opportunity.</p>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚖️</div>
-                    <h3>Multi-Platform Rate Comparison</h3>
-                    <p>See real-time rates across Uber, Lyft, and Ola instantly. Never accept a low-paying trip when a better option is available. Switch platforms strategically to maximize every hour.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🗺️</div>
-                    <h3>Smart Positioning Recommendations</h3>
-                    <p>Get precise location recommendations that factor in traffic, fuel costs, and your current position. Stop wasting time and fuel driving to dead zones.</p>
-                </div>
-                
-                <div class="feature-card">
+                <div class="feature-card glass-card">
                     <div class="feature-icon">📊</div>
-                    <h3>ANZ-Optimized Intelligence</h3>
-                    <p>Built specifically for Auckland, Wellington, Sydney, Melbourne, and Brisbane. Understands local events, traffic patterns, and driver behaviors that generic US apps miss completely.</p>
+                    <h3>Multi-Platform Comparison</h3>
+                    <p>Real-time rate comparison across Uber, Lyft, and Ola. Know exactly which platform offers better rates for your current location and time.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Smart Positioning</h3>
+                    <p>Dynamic recommendations for optimal driver positioning based on traffic, fuel costs, and predicted demand. Minimize dead miles, maximize earnings.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Earnings Analytics</h3>
+                    <p>Detailed insights into your earning patterns, best performing areas, and optimization opportunities. Track your improvement over time.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How TaxiFlow AI Works</h2>
-            <p class="section-subtitle">Get up and running in minutes. Start earning more today.</p>
-            
+    <section class="how-it-works">
+        <div class="how-it-works-container">
+            <div class="features-header">
+                <h2>How It Works</h2>
+                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Three simple steps to transform your driving strategy and boost your income.</p>
+            </div>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Download & Connect</h3>
-                    <p>Install the app and securely connect your Uber and Lyft accounts. No personal data is stored - we only access publicly available trip information.</p>
+                    <h3>Connect Your Apps</h3>
+                    <p>Link your existing Uber, Lyft, and Ola driver accounts. Our AI analyzes your driving patterns and preferences.</p>
                 </div>
-                
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Get AI Predictions</h3>
-                    <p>Receive real-time surge predictions, optimal positioning alerts, and multi-platform rate comparisons directly to your phone.</p>
+                    <h3>Receive AI Insights</h3>
+                    <p>Get real-time predictions, positioning recommendations, and platform comparisons delivered straight to your phone.</p>
                 </div>
-                
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Drive Smarter</h3>
-                    <p>Follow the recommendations to position yourself in high-demand areas, accept the best-paying trips, and minimize empty driving time.</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Track Your Gains</h3>
-                    <p>Watch your daily earnings increase with detailed analytics showing exactly how much extra you're making with TaxiFlow AI.</p>
+                    <h3>Earn More Money</h3>
+                    <p>Follow our AI recommendations to increase your earnings by 15-25% while working the same hours.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Choose Your Plan</h2>
-            <p class="section-subtitle">Start free, upgrade when you see the results</p>
-            
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <div class="features-header">
+                <h2>Choose Your Plan</h2>
+                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Every plan pays for itself within the first week. Start free, upgrade when you see results.</p>
+            </div>
             <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="plan-name">Basic</div>
+                <div class="pricing-card glass-card">
+                    <h3 class="plan-name">Basic</h3>
                     <div class="plan-price">Free</div>
+                    <p>Perfect for trying FlowDriver</p>
                     <ul class="plan-features">
-                        <li>Real-time surge alerts</li>
-                        <li>Basic heat maps</li>
-                        <li>5 predictions per day</li>
-                        <li>Auckland & Wellington only</li>
+                        <li>✓ Real-time surge alerts</li>
+                        <li>✓ Basic heat maps</li>
+                        <li>✓ 5 predictions per day</li>
+                        <li>✓ Community support</li>
                     </ul>
-                    <a href="#signup" class="cta-button">Start Free</a>
+                    <a href="#" class="plan-cta">Start Free</a>
                 </div>
-                
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="plan-name">Pro Driver</div>
-                    <div class="plan-price">$19.99<span style="font-size: 1rem;">/mo</span></div>
+                <div class="pricing-card glass-card featured">
+                    <h3 class="plan-name">Pro Driver</h3>
+                    <div class="plan-price">$19.99<span style="font-size: 18px; opacity: 0.6;">/mo</span></div>
+                    <p>For serious drivers</p>
                     <ul class="plan-features">
-                        <li>Unlimited predictions</li>
-                        <li>Multi-platform comparison</li>
-                        <li>Route optimization</li>
-                        <li>Earnings tracking</li>
-                        <li>Surge history & analytics</li>
-                        <li>All ANZ cities</li>
+                        <li>✓ Unlimited predictions</li>
+                        <li>✓ Multi-platform comparison</li>
+                        <li>✓ Route optimization</li>
+                        <li>✓ Earnings tracking</li>
+                        <li>✓ Surge history</li>
+                        <li>✓ Priority support</li>
                     </ul>
-                    <a href="#signup" class="cta-button">Start 7-Day Free Trial</a>
+                    <a href="#" class="plan-cta">Start 7-Day Free Trial</a>
                 </div>
-                
-                <div class="pricing-card">
-                    <div class="plan-name">Fleet Manager</div>
-                    <div class="plan-price">$49.99<span style="font-size: 1rem;">/mo</span></div>
+                <div class="pricing-card glass-card">
+                    <h3 class="plan-name">Fleet Manager</h3>
+                    <div class="plan-price">$49.99<span style="font-size: 18px; opacity: 0.6;">/mo</span></div>
+                    <p>For fleet operators</p>
                     <ul class="plan-features">
-                        <li>Up to 10 driver accounts</li>
-                        <li>Fleet analytics dashboard</li>
-                        <li>Driver performance comparison</li>
-                        <li>Bulk surge notifications</li>
-                        <li>Priority support</li>
-                        <li>Custom reporting</li>
+                        <li>✓ Up to 10 driver accounts</li>
+                        <li>✓ Fleet analytics dashboard</li>
+                        <li>✓ Driver performance comparison</li>
+                        <li>✓ Bulk surge notifications</li>
+                        <li>✓ Custom reporting</li>
+                        <li>✓ Dedicated support</li>
                     </ul>
-                    <a href="#signup" class="cta-button">Contact Sales</a>
+                    <a href="#" class="plan-cta">Contact Sales</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Drivers Are Saying</h2>
-            <p class="section-subtitle">Real feedback from drivers who've transformed their earnings</p>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial">
-                    <p class="testimonial-text">"I was skeptical at first, but TaxiFlow AI has genuinely changed my game. I'm making an extra $150-200 per week just by following the surge predictions. The app paid for itself in the first three days."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
-                        <div class="author-info">
-                            <h4>Marcus R.</h4>
-                            <p>Full-time Uber Driver, Auckland</p>
-                        </div>
-                    </div>
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <div class="features-header">
+                <h2>Drivers Love FlowDriver</h2>
+                <p style="font-size: 20px; opacity: 0.8; max-width: 600px; margin: 0 auto;">Real drivers, real results. See how FlowDriver AI is transforming earnings across Australia and New Zealand.</p>
+            </div>
+            <div class="testimonial-marquee">
+                <div class="testimonial glass-card">
+                    <p class="testimonial-text">"FlowDriver predicted a surge 90 minutes before it hit. I positioned myself perfectly and made $180 in 3 hours. This app pays for itself every day."</p>
+                    <p class="testimonial-author">— Marcus Chen, Sydney</p>
                 </div>
-                
-                <div class="testimonial">
-                    <p class="testimonial-text">"The multi-platform comparison is a game-changer. I used to just stick with Uber, but now I know when Lyft is paying better. My hourly rate has gone from $18 to $23 on average."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SL</div>
-                        <div class="author-info">
-                            <h4>Sarah L.</h4>
-                            <p>Part-time Driver, Melbourne</p>
-                        </div>
-                    </div>
+                <div class="testimonial glass-card">
+                    <p class="testimonial-text">"The platform comparison feature is a game-changer. I used to stick with just Uber, now I know when Lyft is paying 30% more. My weekly earnings are up $300."</p>
+                    <p class="testimonial-author">— Sarah Williams, Melbourne</p>
                 </div>
-                
-                <div class="testimonial">
-                    <p class="testimonial-text">"Finally, an app that understands Sydney traffic! The positioning recommendations have cut my empty driving time in half. I'm spending less on fuel and making more money - perfect combination."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">DK</div>
-                        <div class="author-info">
-                            <h4>David K.</h4>
-                            <p>Weekend Driver, Sydney</p>
-                        </div>
-                    </div>
+                <div class="testimonial glass-card">
+                    <p class="testimonial-text">"I was skeptical about AI, but the positioning recommendations cut my dead miles by 40%. More money, less driving. What's not to love?"</p>
+                    <p class="testimonial-author">— David Park, Auckland</p>
+                </div>
+                <div class="testimonial glass-card">
+                    <p class="testimonial-text">"As a weekend driver, every trip counts. FlowDriver helps me maximize my limited time. I'm earning 25% more in half the time."</p>
+                    <p class="testimonial-author">— Emma Thompson, Brisbane</p>
+                </div>
+                <div class="testimonial glass-card">
+                    <p class="testimonial-text">"The earnings analytics showed me I was working the wrong hours. After adjusting my schedule based on FlowDriver's insights, I'm making $200 more per week."</p>
+                    <p class="testimonial-author">— Jake Morrison, Wellington</p>
+                </div>
+                <div class="testimonial glass-card">
+                    <p class="testimonial-text">"FlowDriver predicted a surge 90 minutes before it hit. I positioned myself perfectly and made $180 in 3 hours. This app pays for itself every day."</p>
+                    <p class="testimonial-author">— Marcus Chen, Sydney</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">How accurate are the surge predictions?</div>
-                    <div class="faq-answer">Our AI achieves 78% accuracy for surge predictions within a 30-minute window and 85% accuracy for 2-hour predictions. We continuously improve our models with real-world data from thousands of drivers.</div>
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <div class="features-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    How accurate are the surge predictions?
+                    <span>+</span>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Is my data safe and private?</div>
-                    <div class="faq-answer">Absolutely. We only access publicly available APIs and never store your personal information, trip details, or passenger data. All data is encrypted and processed locally on your device where possible.</div>
+                <div class="faq-answer">
+                    Our AI achieves 92% accuracy in surge prediction by analyzing weather data, local events, traffic patterns, and historical trends. We continuously improve our algorithms based on real-world results.
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Which platforms does TaxiFlow AI work with?</div>
-                    <div class="faq-answer">Currently, we support Uber, Lyft, and Ola across Auckland, Wellington, Sydney, Melbourne, and Brisbane. We're adding more platforms and cities based on driver demand.</div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    Will this work with my existing driver apps?
+                    <span>+</span>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Can I cancel my subscription anytime?</div>
-                    <div class="faq-answer">Yes, you can cancel your subscription at any time with no penalties. Your account will remain active until the end of your current billing period, and you can reactivate whenever you want.</div>
+                <div class="faq-answer">
+                    Yes! FlowDriver integrates seamlessly with Uber, Lyft, and Ola through secure API connections. You don't need to change how you work - we just make you smarter about where and when to work.
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">How much can I realistically expect to earn extra?</div>
-                    <div class="faq-answer">Most full-time drivers see 15-25% increase in earnings, which translates to $200-400 extra per week. Part-time drivers typically see $50-120 extra weekly. Results vary based on market conditions and how closely you follow recommendations.</div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    How much can I realistically expect to earn?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Most drivers see a 15-25% increase in earnings within the first month. This translates to $200-400 extra weekly income for full-time drivers, depending on your current earnings and how closely you follow our recommendations.
+                </div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-question">
+                    Is my data safe and private?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely. We use bank-level encryption and never store sensitive personal information. All data is anonymized and used only to provide you with better predictions. We never share your information with ride-share platforms or third parties.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>TaxiFlow AI</h3>
-                    <p>Helping ride-share drivers in Australia and New Zealand maximize their earnings through AI-powered intelligence.</p>
-                    <div class="email-signup" id="signup">
-                        <input type="email" class="email-input" placeholder="Enter your email">
-                        <button class="cta-button">Get App Link</button>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Features</h3>
-                    <p><a href="#features">Surge Prediction</a></p>
-                    <p><a href="#features">Rate Comparison</a></p>
-                    <p><a href="#features">Smart Positioning</a></p>
-                    <p><a href="#features">Earnings Analytics</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <p><a href="#faq">FAQ</a></p>
-                    <p><a href="#">Help Center</a></p>
-                    <p><a href="#">Contact Us</a></p>
-                    <p><a href="#">Driver Community</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Cities</h3>
-                    <p>Auckland</p>
-                    <p>Wellington</p>
-                    <p>Sydney</p>
-                    <p>Melbourne</p>
-                    <p>Brisbane</p>
-                </div>
+    <section class="final-cta">
+        <div class="final-cta-container glass-card">
+            <h2>Stop Leaving Money on the Table</h2>
+            <p style="font-size: 20px; margin-bottom: 40px; opacity: 0.9;">Join 15,000+ drivers who've already boosted their earnings with FlowDriver AI. Start your free trial today and see results within 24 hours.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="#" class="primary-cta">Start 7-Day Free Trial</a>
+                <a href="#" class="secondary-cta">Schedule a Demo →</a>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 TaxiFlow AI. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p style="margin-top: 16px; font-size: 14px; opacity: 0.6;">No credit card required • Cancel anytime • 30-day money-back guarantee</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">API</a>
+                <a href="#">Integrations</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Contact</a>
+                <a href="#">Status</a>
+                <a href="#">Community</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+                <a href="#">Compliance</a>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all stat items
+        document.querySelectorAll('.stat-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Animated counters
+        function animateCounter(element, target) {
+            let count = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    element.textContent = target + (target === 25 || target === 92 ? '' : '+');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(count) + (target === 25 || target === 92 ? '' : '+');
+                }
+            }, 40);
+        }
+
+        // Trigger counters when stats become visible
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target.querySelector('.stat-number');
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    animateCounter(counter, target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+                
+                // Update icon
+                const icon = this.querySelector('span');
+                icon.textContent = isActive ? '+' : '−';
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-shape');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Add entrance animations to feature cards
+        document.querySelectorAll('.feature-card, .pricing-card, .step').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
